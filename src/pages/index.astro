@@ -1,16 +1,11 @@
 ---
-
+import Layout from "../layouts/Layout.astro"
+import Hero from "../components/hero"
+const pageTitle = "ODAS Pub - Página Principal"
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>ODAS Pub</title>
-	</head>
-	<body>
-		<h1>ODAS Pub</h1>
-	</body>
-</html>
+<Layout pageTitle={pageTitle}>
+	<main class="min-h-screen">
+		<Hero/>
+	</main>
+</Layout>
