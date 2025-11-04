@@ -1,12 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro"
-import Hero from "../components/hero"
+import Hero from "../components/Hero"
 import Header from "../components/Header"
 const pageTitle = "ODAS Pub - Página Principal"
 ---
 
 <Layout pageTitle={pageTitle}>
-	<Header client:only="react">
+	<Header client:only="react"/>
 	<main class="min-h-screen">
 		<Hero/>
 	</main>

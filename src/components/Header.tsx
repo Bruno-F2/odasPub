@@ -6,7 +6,7 @@ import { Menu, X, ArrowUp } from "lucide-react";
 
 export default function Header() {
   const navLinks = [
-    { title: "Nosotros", href: "/nosotros"},
+    { title: "Nosotros", href: "/nosotros" },
     { title: "Menú", href: "/menu" },
     { title: "Donde Estamos", href: "/ubicacion" },
   ];
@@ -97,10 +97,7 @@ export default function Header() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="link-text">
-                {" "}
-                {link.title}
-              </span>
+              <span className="link-text"> {link.title}</span>
             </motion.a>
           ))}
         </nav>
@@ -116,9 +113,9 @@ export default function Header() {
           transition={{ type: "spring" }}
         >
           {isOpen ? (
-            <X className="text-newBlue-200" size={24} />
+            <X className="text-accent" size={24} />
           ) : (
-            <Menu className="text-newBlue-200" size={24} />
+            <Menu className="text-accent" size={24} />
           )}
         </motion.button>
       </header>
@@ -128,48 +125,30 @@ export default function Header() {
         {isOpen && (
           <motion.div
             ref={menuRef}
-            className="md:hidden fixed inset-0 z-40 bg-white flex flex-col items-center justify-center"
+            className="md:hidden fixed inset-0 z-40 bg-primary flex flex-col items-center justify-center"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
             <nav className="flex flex-col space-y-6 items-center">
-              {navLinks.map((link, index) =>
-                link.external ? (
-                  <motion.a
-                    key={link.id}
-                    href="/contact"
-                    className="text-newBlue-200 font-semibold text-xl"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      duration: 0.2,
-                      delay: 0.1 + index * 0.05,
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {link.title}
-                  </motion.a>
-                ) : (
-                  <motion.a
-                    key={link.id}
-                    href={`#${link.id}`}
-                    onClick={(e) => scrollToSection(e, link.id)}
-                    className="text-newBlue-200 font-semibold text-xl"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      duration: 0.2,
-                      delay: 0.1 + index * 0.05,
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {link.title}
-                  </motion.a>
-                )
-              )}
+              {navLinks.map((link, index) => (
+                <motion.a
+                  key={link.href}
+                  href={`#${link.href.substring(1)}`}
+                  onClick={(e) => scrollToSection(e, link.href.substring(1))}
+                  className="font-primary font-bold text-lg text-white opacity-80 p-2 hover:opacity-100 transition-all duration-300 hover:cursor-pointer hover:underline hover:text-accent underline-offset-4"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    duration: 0.2,
+                    delay: 0.1 + index * 0.05,
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {link.title}
+                </motion.a>
+              ))}
             </nav>
           </motion.div>
         )}
@@ -180,7 +159,7 @@ export default function Header() {
         {showScrollButton && (
           <motion.button
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 z-40 bg-newBlue-200 text-white p-3 rounded-full shadow-lg hover:cursor-pointer"
+            className="fixed bottom-8 right-8 z-40 bg-accent text-white p-3 rounded-full shadow-lg hover:cursor-pointer"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
